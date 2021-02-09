@@ -4,6 +4,7 @@ import { Language } from '@/commons/constants';
 import zhCN from '@/commons/languages/zh-CN';
 import en from '@/commons/languages/en';
 import Config from '@/config';
+import { AnyType } from '../dto/index.dto';
 
 Vue.use(VueI18n);
 /**
@@ -37,7 +38,7 @@ export function initVueI18n() {
  * 清除 VueI18n
  */
 export function clearVueI18n() {
-    vueI18n = null as any;
+    vueI18n = null as AnyType;
 }
 
 export default vueI18n;

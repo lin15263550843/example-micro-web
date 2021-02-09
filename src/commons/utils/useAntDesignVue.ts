@@ -1,34 +1,8 @@
 import Vue from 'vue';
-import {
-    message,
-    Layout,
-    Form,
-    Input,
-    Button,
-    Menu,
-    Icon,
-    Tabs,
-    Table,
-    // Pagination,
-    // Carousel,
-    // Breadcrumb,
-} from 'lhd-ant-design-vue';
-// } from 'ant-design-vue';
-
+import { message, Layout, Form, Input, Button, Menu, Icon, Tabs, Table } from 'lhd-ant-design-vue';
 /**
  * 按需引入相应的组件样式
  */
-// import 'ant-design-vue/dist/antd.css';
-
-// import 'ant-design-vue/lib/layout/style/css';
-// import 'ant-design-vue/lib/input/style/css';
-// import 'ant-design-vue/lib/form/style/css';
-// import 'ant-design-vue/lib/button/style/css';
-// import 'ant-design-vue/lib/menu/style/css';
-// import 'ant-design-vue/lib/icon/style/css';
-// import 'ant-design-vue/lib/tabs/style/css';
-// import 'ant-design-vue/lib/table/style/css';
-
 import 'lhd-ant-design-vue/lib/layout/style/css';
 import 'lhd-ant-design-vue/lib/input/style/css';
 import 'lhd-ant-design-vue/lib/form/style/css';
@@ -51,9 +25,6 @@ export function initAntDesignVue() {
     Vue.use(Icon);
     Vue.use(Tabs);
     Vue.use(Table);
-    // Vue.use(Pagination)
-    // Vue.use(Carousel)
-    // Vue.use(Breadcrumb)
 }
 /**
  * 消息框配置

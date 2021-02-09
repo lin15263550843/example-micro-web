@@ -1,3 +1,4 @@
+import { AnyType } from './../dto/common.dto';
 /**
  * 封装 LocalStorage
  */
@@ -8,7 +9,7 @@ export class LocalStorage {
      * @param key 数据 key 值
      * @param value  要存储的数据
      */
-    public static set(key: string, value: any) {
+    public static set(key: string, value: AnyType) {
         if (!key) return;
         const type = Object.prototype.toString.call(value).slice(8, -1);
         if ('Object' === type || 'Array' === type) {

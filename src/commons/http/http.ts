@@ -42,13 +42,6 @@ export class Http {
         // post<T = any, R = AxiosResponse<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>;
         return service.post(this.getUrl(url), data, config);
     }
-    // login(params: any) {
-    //     return service({
-    //         url: '/api/user/login.do', //请求的路由
-    //         method: 'post', //请求的方法，默认为get
-    //         data: params //发送请求所需的参数
-    //     })
-    // }
     /**
      * 自定义请求
      * @param config 配置

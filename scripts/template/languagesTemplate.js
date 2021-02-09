@@ -6,5 +6,5 @@ module.exports = function vueTemplate(params) {
 * Created by ${params.authorName} on ${params.dataTime}
 */
 export default {}
-`
-}
+`;
+};

@@ -1,9 +1,4 @@
 /**
- * 全局常量存放
+ * 全局常量存放，会挂载到 Vue.prototype.$Consts
  */
-// export default class Consts {}
-export enum Consts {
-    unknownError = '未知错误',
-    menuRemoveFlag = 'remove',
-}
-// export default Consts;
+export enum Consts {}

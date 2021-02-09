@@ -1,24 +1,4 @@
-import Vue from 'vue';
-import vm from '@/main';
-/**
- * 设置跟节点 fonst-size
- */
-export const setRootHtmlFontSize = () => {
-    const rootHtmlDOM = document.getElementsByTagName('html')[0];
-    const w = rootHtmlDOM.offsetWidth;
-    const fs = Math.round((w / 1920) * 10 * 10) / 10;
-    rootHtmlDOM.style.fontSize = `${fs}px`;
-    Vue.prototype.$rootFontSize = fs;
-};
-
-/**
- * 获取跟节点 fonst-size
- */
-export const getRootHtmlFontSize = () => {
-    // const rootHtmlDOM = document.getElementsByTagName('html')[0]
-    // return parseInt(rootHtmlDOM.style.fontSize || '10')
-    return vm ? vm.$rootFontSize : 10;
-};
+import { AnyType } from '../dto/index.dto';
 
 /**
  * 获取窗口可见区域大小信息
@@ -29,7 +9,6 @@ export const getWindowSizeInfo = () => {
         height: window.innerHeight || window.document.body.clientHeight || window.document.documentElement.clientHeight,
     };
 };
-
 /**
  * 图片加载
  * @param url 图片地址
@@ -49,15 +28,24 @@ export function loadImage(url: string) {
         }
     });
 }
-
 /**
- *  日期格式化
- * @param fmt 格式
- * @param fmt 时间
+ * 日期时间格式化，支持任何类型数据，转换成 Date 类型失败后会返回 ''
+ * @param {string} fmt - 格式：YYYY-mm-dd HH:MM:SS
+ * @param {string} date - 返回：2222-22-22 22:22:22
  */
-export function dateFormat(fmt: string, date: Date) {
+export function dateFormat(fmt: string, date: AnyType) {
+    if (!(date instanceof Date)) {
+        if (!date) return '';
+        if ('number' === typeof date) {
+            date = new Date(date); // 时间戳
+        } else {
+            date = date.replace(/\-/g, '/'); // 兼容 iOS 时间转换
+            date = new Date(date); // 支持字符串
+        }
+    }
+    if (isNaN(date.getTime())) return '';
     let ret;
-    const opt: any = {
+    const opt = {
         'Y+': date.getFullYear().toString(), // 年
         'm+': (date.getMonth() + 1).toString(), // 月
         'd+': date.getDate().toString(), // 日
@@ -69,14 +57,14 @@ export function dateFormat(fmt: string, date: Date) {
     for (const k in opt) {
         ret = new RegExp('(' + k + ')').exec(fmt);
         if (ret) {
-            fmt = fmt.replace(ret[1], 1 === ret[1].length ? opt[k] : opt[k].padStart(ret[1].length, '0'));
+            const key = k as keyof typeof opt;
+            fmt = fmt.replace(ret[1], ret[1].length === 1 ? opt[key] : opt[key].padStart(ret[1].length, '0'));
         }
     }
     return fmt;
 }
 /**
  * 异步睡觉器
- *
  * @param duration 睡觉的毫秒数
  */
 export async function asyncSleep(duration: number) {
@@ -86,7 +74,6 @@ export async function asyncSleep(duration: number) {
 }
 /**
  * 获取范围内的随机数整数
- *
  * @param min 最大边界值
  * @param maxs 最小边界值
  */

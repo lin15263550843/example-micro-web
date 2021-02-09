@@ -10,6 +10,7 @@ import Config from './config';
 import { Consts } from '@/commons/constants';
 import { initAntDesignVue, initVueI18n, clearVueI18n } from './commons/utils';
 import { MainContainerStore } from '@/components/mainContainer';
+import { AnyType, MountProps } from '@/commons/dto/common.dto';
 initAntDesignVue(); // 按需引入 ant-design-vue
 
 Vue.config.productionTip = false;
@@ -18,7 +19,7 @@ Vue.prototype.$Consts = Consts; // 全局常量
 let instance: Vue | null = null;
 
 function render(props = {}) {
-    const { container, rootRouter } = (props as any) || {};
+    const { container, rootRouter } = (props as AnyType) || {};
     const router = initVueRouter();
     const i18n = initVueI18n();
     instance = new Vue({
@@ -44,21 +45,19 @@ export async function bootstrap() {
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
-export async function mount(props: any) {
+export async function mount(props: MountProps) {
     console.log('mount props------>>>', props);
     // const { rootConfig, onGlobalStateChange, setGlobalState } = props;
     const { rootConfig, onGlobalStateChange } = props;
     Vue.prototype.$globalState = props;
     if (rootConfig) Config.apiBaseUrl = rootConfig.apiBaseUrl; // 设置接口请求地址
     if (rootConfig) Config.theme = rootConfig.theme; // 设置接口请求地址
-    console.log('Config----------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>', Config.theme);
-
     render(props);
     // 监听全局状态变更
-    onGlobalStateChange((state: any, prev: any) => {
-        // state: 变更后的状态; prev 变更前的状态
-        console.log('子应用监听状态变更------>>>', state, prev);
-        Config.theme = state.theme;
+    onGlobalStateChange((state: AnyType, prev: AnyType) => {
+        // state: 变更后的状态; prev: 变更前的状态
+        console.log('子应用监听到状态变更------>>>', state, prev);
+        Config.theme = state && state.theme;
         MainContainerStore.setTheme(Config.theme);
     });
     // 设置全局状态变更
@@ -67,7 +66,7 @@ export async function mount(props: any) {
 /**
  * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载微应用的应用实例
  */
-export async function unmount(props: any) {
+export async function unmount(props: AnyType) {
     console.log('unmount props------>>>', props);
     if (instance) {
         instance.$destroy();
@@ -80,11 +79,8 @@ export async function unmount(props: any) {
 /**
  * 可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效
  */
-export async function update(props: any) {
+export async function update(props: AnyType) {
     console.log('update props------>>>', props);
-    const { rootConfig } = props;
-    if (rootConfig) Config.apiBaseUrl = rootConfig.apiBaseUrl; // 设置接口请求地址
-    if (rootConfig) Config.theme = rootConfig.theme; // 设置接口请求地址
 }
 
 export default instance;

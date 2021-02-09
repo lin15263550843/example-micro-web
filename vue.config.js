@@ -6,17 +6,6 @@ const resolve = dir => {
     return path.join(__dirname, dir);
 };
 
-// const port = process.env.port || process.env.npm_config_port || 9530 // dev port
-
-// 项目部署基础
-// 默认情况下，我们假设你的应用将被部署在域的根目录下,
-// 例如：https://www.my-app.com/
-// 默认：'/'
-// 如果您的应用程序部署在子路径中，则需要在这指定子路径
-// 例如：https://www.foobar.com/my-app/
-// 需要将它改为'/my-app/'
-// iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
-// const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
 module.exports = {
     publicPath: '/',
     outputDir: 'dist',
@@ -47,7 +36,6 @@ module.exports = {
         },
         output: {
             library: name,
-            // library: `${packageName}-[name]`,
             libraryTarget: 'umd',
             jsonpFunction: `webpackJsonp_${name}`,
         },
@@ -119,7 +107,7 @@ module.exports = {
                 antdv: {
                     name: 'chunk-antdv',
                     priority: 20,
-                    test: /[\\/]node_modules[\\/]_?ant-design-vue(.*)/,
+                    test: /[\\/]node_modules[\\/]_?lhd-ant-design-vue(.*)/,
                 },
                 // commons: {
                 //     name: 'chunk-commons',
@@ -153,19 +141,18 @@ module.exports = {
             //     // 这里的选项会传递给 postcss-loader
             // }
             scss: {
-                prependData: `@import '@/styles/themes/variables.scss';`,
-                // additionalData: `@import 'styles/themes/yjwzPrimary.scss';`
+                prependData: `@import '@/styles/variables.scss';`,
             },
-            less: {
-                lessOptions: {
-                    modifyVars: {
-                        'primary-color': 'red',
-                        'link-color': 'red',
-                        'border-radius-base': '2px',
-                    },
-                    javascriptEnabled: true,
-                },
-            },
+            // less: {
+            //     lessOptions: {
+            //         modifyVars: {
+            //             'primary-color': 'red',
+            //             'link-color': 'red',
+            //             'border-radius-base': '2px',
+            //         },
+            //         javascriptEnabled: true,
+            //     },
+            // },
         },
     },
 };

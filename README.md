@@ -1,105 +1,73 @@
-# vue-web
+# example-micro-web
 
-## 安装依赖
+### 安装依赖
 
 ```
 yarn install
 ```
 
-## 启动并在浏览器打开项目
+### 启动并在浏览器打开项目
 
 ```
-yarn run start
+yarn dev
 ```
 
 ### 格式化代码
 
 ```
-yarn run format
+yarn format
 ```
 
-### 生产打包
+### 打包
 
 ```
-yarn run build
+yarn build
 ```
 
 ### 单元测试
 
 ```
-yarn run test
+yarn test
 ```
 
 ### 整理和修复文件
 
 ```
-yarn run lint
+yarn lint
 ```
-
-### 配置项目
 
 ### 关于快速生成页面脚本说明
 
-#### 安装插件
+module 代表模块目录，pageName 代表页面名称
 
-##### 安装 silly-datetime 插件
+#### 1、生成模块
 
-```
-npm i silly-datetime --save
-```
-
-用来获取系统时间。
-
-##### 安装 chalk 插件
+会在 views 目录下生成 module
 
 ```
-yarn add chalk --dev
+yarn run view module
 ```
 
-chalk 是一个颜色的插件，用来修改命令行显示颜色，更美观。
+#### 2、生成 vue 页面
 
-#### 使用插件
-
-##### 配置
+会在 views/module 目录下生成 pageName
 
 ```
-  "scripts": {
-    "views": "node scripts/generateView/generateView.js views",
-    "cpt": "node scripts/generateView/generateView.js cpt",
-    "page": "node scripts/generateView/generateView.js page"
-  }
+yarn run view module/pageName
 ```
 
-在 package.json 中配置
+#### 3、生成 vue 组件
 
-##### 1、生成 vue 普通页面
-
-```
-yarn run views file-name
-```
-
-会生成在 views 目录下
-
-##### 2、生成 vue 组件
+会在相应的目录下生成组件
 
 ```
-yarn run cpt file-name
+yarn comp module/pageName/componentName
 ```
 
-会生成在 components 目录下
-
-##### 3、生成单个页面
+### 以上方式都支持多层目录创建
 
 ```
-yarn run page views/components/tables/file-name.vue
-```
-
-默认会生成在 src 目录下的，需要拼写文件名后缀。
-
-####以上方式都支持多层目录创建
-
-```
-yarn run views aaa/bbb/ccc-ddd/file-name
+yarn run views aaa/bbb/cccDdd/pageName
 ```
 
 ### 目录结构
@@ -110,53 +78,69 @@ yarn run views aaa/bbb/ccc-ddd/file-name
 ├── node_modules                        // 依赖安装目录
 ├── public                              // 公共目录
 │   ├── favicon.ico                     // 站点icon
-│   ├── image                           // 图片目录
 │   ├── index.html                      // 入口文件
 │   └── manifest.json                   // manifest配置文件
-│
-├── scripts                             // node脚本
-│   └── generateView.js                 // 用来生成视图与组件
-
+├── scripts                             // 脚本存放目录
 ├── src                                 // 源代码
 │   ├── assets                          // 静态资源
 │   ├── commons                         // 公共文件
+│   │   ├── constants                   // 常量存放
+│   │   │   ├── index.ts                // 入口文件
+│   │   │   ├── consts.ts               // 全局常量
+│   │   │   ├── language.ts             // 国际化
+│   │   │   ├── themes.ts               // 主题
+│   │   │   └── urls.ts                 // 接口地址
+│   │   ├── dto                         // 类型
+│   │   │   ├── common.dto.ts           // 公共类型 DTO
+│   │   │   └── index.dto.ts            // 入口文件
 │   │   ├── http                        // http 接口请求
-│   │   │  ├── api.ts                            // 接口列表文件
-│   │   │  └── index.ts                           // 接口请求配置
-│   │   ├── styles                      // 公共样式
+│   │   │   ├── index.ts                // 入口文件
+│   │   │   ├── http.ts                 // 请求封装
+│   │   │   └── interceptors.ts         // 请求拦截
+│   │   ├── languages                   // 国际化
+│   │   │   ├── en.ts                   // 英语
+│   │   │   └── zh-CN.ts                // 简体中文
 │   │   ├── utils                       // 工具
-│   │   │   ├── index.ts                // 工具入口
+│   │   │   ├── index.ts                // 入口文件
+│   │   │   ├── localStorage.ts         // 存储
+│   │   │   ├── useAntDesignVue.ts      // UI 组件库
+│   │   │   ├── useI18n.ts              // I18n 国际化
 │   │   │   └── utils.ts                // 工具类
 │   │   └──
-│   ├── components                      // 公共组件，COMPONENTS.md 中维护组件说明
+│   ├── components                      // 公共组件
 │   ├── router                          // 路由
 │   │   ├── index.ts                    // 路由配置入口
-│   │   └── routes.ts                   // 路由列表
-│   ├── store                           // vuex 状态管理
-│   │   ├── index.ts                    // vuex 主入口
-
-│   │   └── module                       // 模块目录
-│   │       └── views                   // 视图状态模块
-│   │       └── component               // 组件状态模块
-
-│   ├── views                           // 视图目录（主要开发目录）
+│   │   └── rootRoutes.ts               // 顶级路由列表
+│   ├── store                           // 状态管理
+│   │   └── index.ts                    // 实例化 vuex
+│   ├── styles                          // 样式
+│   │   ├── index.scss                  // 入口文件
+│   │   ├── common.scss                 // 公共样式
+│   │   ├── variables.scss              // scss 全局变量
+│   │   └── themes                      // 主题
+│   │       ├── primary.scss            // 默认主题
+│   │       └── red.scss                // 自定义主题
+│   │── types                           // ts 声明文件
+│   ├── views                           // 页面目录（主要开发目录）
 │   ├── App.vue                         // Vue 根文件
 │   ├── config.ts                       // 项目配置文件
 │   ├── main.ts                         // 应用主入口
-│   ├── shims-tsx.d.ts                  // ts 支持文件
-│   ├── shims-vue.d.ts                  // ts 支持文件
+│   └── public-path.js                  // 微前端配置文件
+├── tests                               // 单元测试目录
+├── .browserslistrc                     // 配置兼容浏览器
 ├── .env                                // 环境变量配置文件
 ├── .env.development                    // 开发模式
 ├── .env.production                     // 生产模式
 ├── .eslintignore                       // eslint 规则忽略
 ├── .eslintrc.js                        // eslint 规则文件
-├── .gitignore                          // Git 提价忽略文件
+├── .gitattributes                      // Git 配置文件
+├── .gitignore                          // Git 提交文件忽略
 ├── babel.config.js                     // Babel 配置文件
-├── COMPONENTS.md                       // 公共组件概览
+├── components.md                       // 公共组件说明
 ├── package.json                        // node 项目配置及模块管理文件
 ├── tsconfig.json                       // ts 配置文件
-├── vue.config.js                       // Vue 配置文件
-├── README.md                           // 工程说明
-├── webpack.config.js                   // webpack 配置文件，虚拟的，实际打包不会用到
-└── yarn.lock                           // yarn 包管理文件
+├── vue.config.js                       // Vue webpack 相关配置文件
+├── README.md                           // 自述文件
+├── yarn.lock                           // yarn 包管理文件
+└─────────────────────────────────────────────────────────────────────
 ```

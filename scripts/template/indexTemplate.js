@@ -5,8 +5,8 @@ module.exports = function indexTemplate(params) {
     return `/**
  * Created by ${params.authorName} on ${params.dataTime}
  */
-import ${params.initialsUpperCaseName} from './${params.fileName}.vue'
+import ${params.initialsUpperCaseName} from './${params.fileName}.vue';
 
-export default ${params.initialsUpperCaseName}
-`
-}
+export default ${params.initialsUpperCaseName};
+`;
+};

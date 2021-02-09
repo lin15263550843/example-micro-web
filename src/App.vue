@@ -9,18 +9,14 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    // text-align: center;
-    // color: #2c3e50;
-    // height: 100vh;
-    // width: 100vw;
     width: 100%;
     height: 100%;
 }
-@media screen and (min-width: 1500px) {
-    #example-micro-web {
-        overflow-x: hidden;
-    }
-}
+// @media screen and (min-width: 1500px) {
+//     #example-micro-web {
+//         overflow-x: hidden;
+//     }
+// }
 body {
     height: 100%;
     width: 100%;

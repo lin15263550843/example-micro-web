@@ -10,5 +10,5 @@ module.exports = function vueTemplate(params) {
 </template>
 <script lang="ts" src="./${params.fileName}.ts" />
 <style scoped lang="scss" src="./${params.fileName}.scss" />
-`
-}
+`;
+};

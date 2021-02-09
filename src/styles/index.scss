@@ -26,6 +26,6 @@ $bg-color: blue;
 // 引入公共样式
 @import 'common.scss';
 // 引入主题
-@import 'themes/yjwz/red.scss';
-@import 'themes/variables.scss';
-@import 'themes/yjwz/primary.scss';
+@import 'themes/red.scss';
+@import 'themes/primary.scss';
+@import 'variables.scss';

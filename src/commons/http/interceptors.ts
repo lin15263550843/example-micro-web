@@ -2,7 +2,6 @@
  * 封装 axios 拦截
  */
 import Axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
-// import axios, { AxiosResponse } from 'axios'
 import router from '@/router';
 import Config from '@/config';
 /**
@@ -61,12 +60,11 @@ service.interceptors.request.use(
         //   if (store.getters.sessionId) {
         //     config.headers['X-SessionId'] = getSessionId(); // 让每个请求携带token--['X-Token']为自定义key
         //   }
-        // console.log('config===>>>', config)
         return config;
     },
     (error: AxiosError) => {
         // 对请求错误做些什么
-        console.log('requestError===>>>', error);
+        console.log('requestError------>>>', error);
         return Promise.reject(error);
     },
 );
@@ -91,10 +89,7 @@ service.interceptors.response.use(
         // } else {
         //     return response
         // }
-        console.log(response);
-
         const resData = response.data;
-
         // 考虑到接口返回不应为空，所以全局处理，抛出未知错误
         if (!resData) {
             return { code: -200, data: null, message: '未知错误' };
@@ -118,7 +113,6 @@ service.interceptors.response.use(
     },
     (error: any) => {
         // 对响应错误做点什么
-        // Prompt.toast(error.message)
         switch (error.response?.status) {
             case 401:
                 // 用户身份失效，跳转OAUTH登录
@@ -146,7 +140,7 @@ service.interceptors.response.use(
         // if (error.message === '取消重复请求') {
         //     return Promise.reject(error)
         // }
-        console.log('responseError===>>>', error);
+        console.log('responseError------>>>', error);
         return Promise.reject(error);
     },
 );

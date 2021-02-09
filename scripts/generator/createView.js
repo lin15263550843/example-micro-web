@@ -22,7 +22,7 @@ const createTemplateInfo = getTemplateCreateInfo(fileName);
  */
 function handleCommonsLanguages(data, fName) {
     const fn = fName.split('.')[0];
-    const importPath = `import ${fileName} from '${importViewsPath}${argv3}${languagesDir}/${fn}'\n`;
+    const importPath = `import ${fileName} from '${importViewsPath}${argv3}${languagesDir}/${fn}';\n`;
     return importPath + data.replace(commonMark, `${fileName},\n    ${commonMark}`);
 }
 /**

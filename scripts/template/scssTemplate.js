@@ -5,5 +5,5 @@ module.exports = function vueTemplate(params) {
     return `.${params.fileName} {
     
 }
-`
-}
+`;
+};

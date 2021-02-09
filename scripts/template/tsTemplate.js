@@ -2,7 +2,7 @@
  * .ts 文件模板
  */
 module.exports = function tsTemplate(params) {
-    return `import { Component, Vue } from 'vue-property-decorator'
+    return `import { Component, Vue } from 'vue-property-decorator';
 /**
  * Created by ${params.authorName} on ${params.dataTime}
  */
@@ -15,5 +15,5 @@ export default class ${params.initialsUpperCaseName} extends Vue {
         // coding...
     }
 }
-`
-}
+`;
+};

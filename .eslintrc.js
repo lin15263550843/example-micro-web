@@ -1,5 +1,5 @@
 /**
- * 请严格遵守 eslint 规则，禁止修改该文件
+ * 请严格遵守 eslint 规则，不要修改该文件
  */
 module.exports = {
     root: true,

@@ -1,4 +1,4 @@
-import login from '@/views/user/login/languages/en';
+import example from '@/views/main/example/languages/en';
 /**
  * 英语
  */
@@ -9,6 +9,6 @@ export default {
             cancelButtonText: 'No',
         },
     },
-    login,
+    example,
     /* automatically added, please do not modify manually */
 };

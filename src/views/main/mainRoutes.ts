@@ -5,15 +5,16 @@ import { RouteConfig } from 'vue-router';
 const routes: RouteConfig = {
     path: '/main',
     name: 'main',
-    redirect: '/main/home',
+    redirect: '/main/example',
     component: { render: h => h('router-view') },
     children: [
         {
-            path: 'home',
-            name: 'home',
-            component: () => import(/* webpackChunkName: "home" */ '@/views/main/home'),
-            meta: { title: '首页', icon: '', isSide: true, isFooter: true, isHeader: false },
+            path: 'example',
+            name: 'example',
+            component: () => import(/* webpackChunkName: "main" */ '@/views/main/example'),
+            meta: { title: 'example' },
         },
+        /* automatically added, please do not modify manually */
     ],
 };
 
