@@ -1,6 +1,6 @@
 {
-    "name": "example-micro-web",
-    "version": "0.1.0",
+    "name": "micro-web",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
         "dev": "vue-cli-service serve --open",

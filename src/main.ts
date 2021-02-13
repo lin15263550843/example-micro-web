@@ -27,7 +27,7 @@ function render(props = {}) {
         i18n,
         store,
         render: h => h(App),
-    }).$mount(container ? container.querySelector('#example-micro-web') : '#example-micro-web');
+    }).$mount(container ? container.querySelector('#micro-app') : '#micro-app');
     // 没有 rootRouter 的情况会使用 router
     Vue.prototype.$rootRouter = rootRouter || router;
 }
@@ -61,7 +61,7 @@ export async function mount(props: MountProps) {
         MainContainerStore.setTheme(Config.theme);
     });
     // 设置全局状态变更
-    // setGlobalState({ name: 'example-micro-web' });
+    // setGlobalState({ name: 'micro-app' });
 }
 /**
  * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载微应用的应用实例
