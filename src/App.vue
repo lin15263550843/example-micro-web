@@ -23,49 +23,21 @@ body {
     text-rendering: optimizeLegibility;
     font-family: Microsoft YaHei, Arial, sans-serif;
 }
+
 html {
     width: 100%;
     height: 100%;
     font-size: 10px;
 }
+
 * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
-// @media only screen and (min-width: 1367px) {
-//     html {
-//         font-size: 6px;
-//     }
-// }
-// @media only screen and (min-width: 1441px) {
-//     html {
-//         font-size: 8px;
-//     }
-// }
-// @media only screen and (min-width: 1601px) {
-//     html {
-//         font-size: 8px;
-//     }
-// }
-// @media only screen and (min-width: 1681px) {
-//     html {
-//         font-size: 10px;
-//     }
-// }
 // @media only screen and (min-width: 1921px) {
 //     html {
 //         font-size: 12px;
-//     }
-// }
-// @media only screen and (min-width: 2561px) {
-//     html {
-//         font-size: 18px;
-//     }
-// }
-// @media only screen and (min-width: 4097px) {
-//     html {
-//         font-size: 36px;
 //     }
 // }
 </style>
