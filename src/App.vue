@@ -1,22 +1,18 @@
 <template>
-    <div id="example-micro-web">
+    <div id="micro-app">
         <router-view />
     </div>
 </template>
 
 <style lang="scss">
-#example-micro-web {
+#micro-app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     width: 100%;
     height: 100%;
 }
-// @media screen and (min-width: 1500px) {
-//     #example-micro-web {
-//         overflow-x: hidden;
-//     }
-// }
+
 body {
     height: 100%;
     width: 100%;
