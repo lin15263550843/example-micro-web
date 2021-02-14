@@ -2557,6 +2557,11 @@ commander@^2.12.1, commander@^2.18.0, commander@^2.20.0:
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
 
+commander@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-7.0.0.tgz#3e2bbfd8bb6724760980988fb5b22b7ee6b71ab2"
+  integrity sha512-ovx/7NkTrnPuIV8sqk/GjUIIM1+iUQeqA3ye2VNpq9sVoiZsooObWlQy+OPWGI17GDaEoybuAGJm6U8yC077BA==
+
 commander@~2.19.0:
   version "2.19.0"
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
@@ -5504,6 +5509,15 @@ methods@~1.1.2:
   resolved "https://registry.npm.taobao.org/methods/download/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
+micro-frontends-scripts@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/micro-frontends-scripts/-/micro-frontends-scripts-1.0.6.tgz#59ba04e451990b1e27df04c74138e0dda91747e4"
+  integrity sha512-Mclisx3i9+cQGo5g8kWniXc4Kn26o7Q0EWMcTTmmnexZGHu96d7nu1rK4U3XLhNC3rjo6X83TLlJ+Arjb65LVA==
+  dependencies:
+    chalk "^4.1.0"
+    commander "^7.0.0"
+    silly-datetime "^0.1.2"
+
 microevent.ts@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npm.taobao.org/microevent.ts/download/microevent.ts-0.1.1.tgz#70b09b83f43df5172d0205a63025bce0f7357fa0"
@@ -7493,7 +7507,7 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.npm.taobao.org/signal-exit/download/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha1-oUEMLt2PB3sItOJTyOrPyvBXRhw=
 
-silly-datetime@0.1.2:
+silly-datetime@0.1.2, silly-datetime@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/silly-datetime/download/silly-datetime-0.1.2.tgz#21978e8e8d8481616063ac112ff14693f06eb85b"
   integrity sha1-IZeOjo2EgWFgY6wRL/FGk/BuuFs=
