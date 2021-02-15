@@ -10,7 +10,7 @@
         "format": "prettier --write \"src/**/*.{scss,ts,vue}\"",
         "module": "micro-frontends-scripts module",
         "view": "micro-frontends-scripts view",
-        "comp": "micro-frontends-scripts -c view"
+        "comp": "micro-frontends-scripts view -c"
     },
     "dependencies": {
         "axios": "0.20.0",
