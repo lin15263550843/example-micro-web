@@ -5509,10 +5509,10 @@ methods@~1.1.2:
   resolved "https://registry.npm.taobao.org/methods/download/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
-micro-frontends-scripts@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/micro-frontends-scripts/-/micro-frontends-scripts-1.0.6.tgz#59ba04e451990b1e27df04c74138e0dda91747e4"
-  integrity sha512-Mclisx3i9+cQGo5g8kWniXc4Kn26o7Q0EWMcTTmmnexZGHu96d7nu1rK4U3XLhNC3rjo6X83TLlJ+Arjb65LVA==
+micro-frontends-scripts@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/micro-frontends-scripts/-/micro-frontends-scripts-1.0.7.tgz#eaf81939131c8c233c6bbbef8cd0fa8ea42f0e7b"
+  integrity sha512-rSh6RtWhnMEuD7sZUfPeWVBXJGyVVFOl197CvU99qLEKbzZkN9D6tu4hDswwPr3tIUK1bHUmsPwGNrGYBoCdRA==
   dependencies:
     chalk "^4.1.0"
     commander "^7.0.0"
