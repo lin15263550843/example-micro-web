@@ -2,6 +2,7 @@
 <template>
     <div class="example">
         coding...
+        <div id="micro-application-container-example-micro-web" />
     </div>
 </template>
 <script lang="ts" src="./example.ts" />

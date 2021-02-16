@@ -12,10 +12,6 @@ declare global {
             [elem: string]: any;
         }
     }
-    interface Window {
-        __POWERED_BY_QIANKUN__: any;
-        __INJECTED_PUBLIC_PATH_BY_QIANKUN__: any;
-    }
 }
 declare module 'vue/types/vue' {
     interface Vue {

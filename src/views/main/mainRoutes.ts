@@ -11,8 +11,10 @@ const routes: RouteConfig = {
         {
             path: 'example',
             name: 'example',
-            component: () => import(/* webpackChunkName: "main" */ '@/views/main/example'),
+            redirect: '/main/example/example',
             meta: { title: 'example' },
+            component: () => import(/* webpackChunkName: "main" */ '@/views/main/example'),
+            children: [{ path: '*', name: 'micro-container' }],
         },
         /* automatically added, please do not modify manually */
     ],

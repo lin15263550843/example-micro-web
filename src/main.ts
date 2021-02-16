@@ -1,86 +1,94 @@
-import './public-path';
 import './styles/index.scss';
+
 import Vue from 'vue';
+import {
+    registerMicroApps,
+    start,
+    // prefetchApps,
+    addGlobalUncaughtErrorHandler,
+    initGlobalState,
+    MicroAppStateActions,
+} from 'qiankun';
 
 import App from './App.vue';
-import { initVueRouter, clearVueRouter } from './router';
 import store from './store';
 import Config from './config';
-
 import { Consts } from '@/commons/constants';
-import { initAntDesignVue, initVueI18n, clearVueI18n } from './commons/utils';
-import { MainContainerStore } from '@/components/mainContainer';
-import { AnyType, MountProps } from '@/commons/dto/common.dto';
+import { initVueRouter } from './router';
+import { initAntDesignVue, initVueI18n } from './commons/utils';
+
 initAntDesignVue(); // 按需引入 ant-design-vue
+
+const router = initVueRouter();
 
 Vue.config.productionTip = false;
 Vue.prototype.$Consts = Consts; // 全局常量
+Vue.prototype.$rootRouter = router;
 
-let instance: Vue | null = null;
+// const rootState = { rootConfig: Config }; // 全局状态
+const rootInfo = { rootRouter: router, rootConfig: Config }; // 传递给字应用的配置信息
+const i18n = initVueI18n();
+const instance = new Vue({
+    router,
+    i18n,
+    store,
+    render: h => h(App),
+}).$mount('#main-app-web');
 
-function render(props = {}) {
-    const { container, rootRouter } = (props as AnyType) || {};
-    const router = initVueRouter();
-    const i18n = initVueI18n();
-    instance = new Vue({
-        router,
-        i18n,
-        store,
-        render: h => h(App),
-    }).$mount(container ? container.querySelector('#micro-app') : '#micro-app');
-    // 没有 rootRouter 的情况会使用 router
-    Vue.prototype.$rootRouter = rootRouter || router;
-}
-// 独立运行时
-if (!window.__POWERED_BY_QIANKUN__) {
-    render();
-}
 /**
- * bootstrap 只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发 bootstrap。
- * 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。
+ * 定义全局状态，并返回通信方法，建议在主应用使用，
+ * 微应用通过 props 获取通信方法
+ * 初始化 state
  */
-export async function bootstrap() {
-    console.log('[vue] vue app bootstraped');
-}
+const actions: MicroAppStateActions = initGlobalState(Config);
+Vue.prototype.$microAppStateActions = actions;
+// 在当前应用监听全局状态，有变更触发 callback，fireImmediately = true 立即触发 callback
+actions.onGlobalStateChange((state, prev) => {
+    // state: 变更后的状态; prev 变更前的状态
+    console.log('主应用监听到状态变更------>>>', state, prev);
+});
+// 按一级属性设置全局状态，微应用中只能修改已存在的一级属性
+// actions.setGlobalState(rootState);
+// 移除当前应用的状态监听，微应用 umount 时会默认调用
+// actions.offGlobalStateChange()
 /**
- * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
+ * apps - Array<RegistrableApp> - 必选，微应用的一些注册信息
+ * lifeCycles - LifeCycles - 可选，全局的微应用生命周期钩子
  */
-export async function mount(props: MountProps) {
-    console.log('mount props------>>>', props);
-    // const { rootConfig, onGlobalStateChange, setGlobalState } = props;
-    const { rootConfig, onGlobalStateChange } = props;
-    Vue.prototype.$globalState = props;
-    if (rootConfig) Config.apiBaseUrl = rootConfig.apiBaseUrl; // 设置接口请求地址
-    if (rootConfig) Config.theme = rootConfig.theme; // 设置接口请求地址
-    render(props);
-    // 监听全局状态变更
-    onGlobalStateChange((state: AnyType, prev: AnyType) => {
-        // state: 变更后的状态; prev: 变更前的状态
-        console.log('子应用监听到状态变更------>>>', state, prev);
-        Config.theme = state && state.theme;
-        MainContainerStore.setTheme(Config.theme);
-    });
-    // 设置全局状态变更
-    // setGlobalState({ name: 'micro-app' });
-}
+registerMicroApps(
+    [
+        {
+            name: 'example-micro-web',
+            entry: '//localhost:8081',
+            container: '#micro-application-container-example-micro-web',
+            activeRule: '/main/example/example',
+            props: { ...rootInfo, data: '传递给子应用的数据' },
+        },
+    ],
+    {
+        beforeLoad: app => Promise.resolve(console.log('beforeLoad=====', app)),
+        beforeMount: [async app => console.log('beforeMount============', app)],
+        afterMount: [async app => console.log('afterMount==============', app)],
+        beforeUnmount: [async app => console.log('beforeUnmount========', app)],
+        afterUnmount: [async app => console.log('afterUnmount==========', app)],
+    },
+);
 /**
- * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载微应用的应用实例
+ * 启动
+ * opts - Options 可选（具体参数请查阅官方文档）
+ * https://qiankun.umijs.org/zh/api#startopts
  */
-export async function unmount(props: AnyType) {
-    console.log('unmount props------>>>', props);
-    if (instance) {
-        instance.$destroy();
-        instance.$el.innerHTML = '';
-    }
-    instance = null;
-    clearVueRouter();
-    clearVueI18n();
-}
+start();
 /**
- * 可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效
+ * apps - AppMetadata[] - 必选 - 预加载的应用列表
+ * importEntryOpts - 可选 - 加载配置
  */
-export async function update(props: AnyType) {
-    console.log('update props------>>>', props);
-}
+// prefetchApps([{ name: 'yjwz-web', entry: 'http://localhost:3000/#/' }]);
+/**
+ * 添加全局的未捕获异常处理器
+ */
+addGlobalUncaughtErrorHandler(event => {
+    console.log('event------>>>', event);
+});
 
 export default instance;
