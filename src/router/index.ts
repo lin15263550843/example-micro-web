@@ -6,10 +6,10 @@ Vue.use(VueRouter);
 /**
  * 创建 VueRouter 实例
  */
-function newVueRouter() {
+function newVueRouter(basePath: string) {
     return new VueRouter({
         // hash 模式不需要设置 base
-        base: window.__POWERED_BY_QIANKUN__ ? '/main/home/example/' : '/',
+        base: window.__POWERED_BY_QIANKUN__ ? basePath : '/',
         mode: 'history',
         routes,
     });
@@ -21,8 +21,8 @@ let router: VueRouter | null = null;
 /**
  * 初始化 VueRouter
  */
-export function initVueRouter() {
-    router = newVueRouter();
+export function initVueRouter(basePath: string) {
+    router = newVueRouter(basePath);
     // 跳转之前，可进行权限控制
     router.beforeEach((to, from, next) => {
         if (to.meta.title) {

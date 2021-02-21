@@ -19,8 +19,8 @@ Vue.prototype.$Consts = Consts; // 全局常量
 let instance: Vue | null = null;
 
 function render(props = {}) {
-    const { container, rootRouter } = (props as AnyType) || {};
-    const router = initVueRouter();
+    const { container, rootRouter, data } = (props as AnyType) || {};
+    const router = initVueRouter(data ? data.routerBase : '/');
     const i18n = initVueI18n();
     instance = new Vue({
         router,
