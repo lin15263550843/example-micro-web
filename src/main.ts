@@ -62,7 +62,7 @@ registerMicroApps(
             entry: '//localhost:8081',
             container: '#micro-application-container-example-micro-web',
             activeRule: '/main/example/example',
-            props: { ...rootInfo, data: '传递给子应用的数据' },
+            props: { ...rootInfo, data: { routerBase: '/main/example/example' } },
         },
     ],
     {
