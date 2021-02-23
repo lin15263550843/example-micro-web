@@ -50,14 +50,19 @@ export async function mount(props: MountProps) {
     // const { rootConfig, onGlobalStateChange, setGlobalState } = props;
     const { rootConfig, onGlobalStateChange } = props;
     Vue.prototype.$globalState = props;
-    if (rootConfig) Config.apiBaseUrl = rootConfig.apiBaseUrl; // 设置接口请求地址
-    if (rootConfig) Config.theme = rootConfig.theme; // 设置接口请求地址
+    if (rootConfig) {
+        Config.apiBaseUrl = rootConfig.apiBaseUrl; // 设置接口请求地址
+        Config.theme = rootConfig.theme; // 设置接口请求地址
+        Config.language = rootConfig.language; // 国际化
+    }
     render(props);
     // 监听全局状态变更
     onGlobalStateChange((state: AnyType, prev: AnyType) => {
         // state: 变更后的状态; prev: 变更前的状态
         console.log('子应用监听到状态变更------>>>', state, prev);
-        Config.theme = state && state.theme;
+        if (state && state.theme) Config.theme = state.theme;
+        if (state && state.theme) Config.language = state.language;
+        if (instance) instance.$i18n.locale = Config.language;
         MainContainerStore.setTheme(Config.theme);
     });
     // 设置全局状态变更
