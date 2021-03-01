@@ -40,13 +40,13 @@ export default class Example extends Vue {
         // };
 
         const route: QiankunGlobalStateRoute = {
-            sender: 'micro-app-1', // 发送者
+            sender: 'example-micro-web', // 发送者
             recipient: 'main-app', // 接收着
             type: 'gotoPage', // 类型标识
             appName: 'micro-app-demo2', // 要跳转的应用名称
             menuCode: '', // 要跳转的应用对应菜单名称
             path: path, // 要跳转的应用页面路径
-            params: { data: '我是子应用 micro-app-demo1 的数据' }, // 传递的数据
+            params: { data: '我是子应用 example-micro-web 的数据' }, // 传递的数据
         };
         // 通知主应用跳转到应用 2
         this.$globalState?.setGlobalState({ actionType: GlobalStateActionTypes.route, route });

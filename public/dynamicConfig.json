@@ -1,6 +1,6 @@
 {
-    "apiBaseUrl": "http://yjwzdev.qingdao.cosmoplat.com",
-    "apiPrefix": "hmzy",
+    "apiBaseUrl": "http://localhost:8081",
+    "apiPrefix": "",
     "language": "zhCN",
     "theme": "theme-primary",
     "env": "local",

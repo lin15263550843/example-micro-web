@@ -5,7 +5,7 @@ import Config from '@/config';
  */
 export function initDynamicConfig() {
     // fetch 的速度可能比 xhr 更快一丢丢，如果浏览器不支持 fetch 可以使用下面的 Http.request (xhr) 方法
-    return fetch('/dynamicConfig.json')
+    return fetch(`${window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__}dynamicConfig.json`)
         .then(response => {
             return response.json();
         })
@@ -13,7 +13,7 @@ export function initDynamicConfig() {
             const { apiBaseUrl, apiPrefix, language, env, logger, theme } = json;
             if (json) {
                 // 动态配置
-                Config.apiBaseUrl = `${apiBaseUrl}/${apiPrefix}/`;
+                Config.apiBaseUrl = `${apiBaseUrl}/${apiPrefix}${apiPrefix && '/'}`;
                 Config.language = language;
                 Config.theme = theme;
                 Config.logger = logger;

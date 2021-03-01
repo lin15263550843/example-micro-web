@@ -37,6 +37,7 @@ console.log('window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__-----------', window.__IN
  */
 const service = Axios.create({
     // baseURL: Config.apiBaseUrl, // 基础地址 要请求的url前缀
+    // baseURL: window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__, // 基础地址 要请求的url前缀
     timeout: 60000, // 请求超时时间
 });
 /**
