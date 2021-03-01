@@ -1,7 +1,7 @@
 <!--Created by lhd on 2021-02-09 15:35:22-->
 <template>
     <div class="example">
-        <h4>我是子应用 1 的 example 页面</h4>
+        <h4>我是子应用 example-micro-web 的 example 页面</h4>
         <h4>国际化：{{ $t('example.chinese') }}</h4>
         <router-link to="/main/page1">
             <h4>内部跳转到 page1 页面</h4>

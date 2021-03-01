@@ -1,6 +1,7 @@
 <!--Created by lhd on 2021-02-28 22:50:20-->
 <template>
     <div class="page2">
+        <h4>我是子应用 example-micro-web 的 page1 页面</h4>
         <router-link to="/main/example">
             <h4>内部跳转到 example 页面</h4>
         </router-link>
