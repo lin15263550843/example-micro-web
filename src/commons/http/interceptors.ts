@@ -30,7 +30,6 @@ import { RouterPaths } from '../constants/routerPaths';
 //         }
 //     }
 // }
-console.log('window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__-----------', window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__);
 
 /**
  * 创建axios实例
