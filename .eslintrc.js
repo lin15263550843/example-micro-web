@@ -21,6 +21,7 @@ module.exports = {
     //     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // },
     rules: {
+        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'vue/max-attributes-per-line': [
             2,
             {

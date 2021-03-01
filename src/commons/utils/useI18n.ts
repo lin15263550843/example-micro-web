@@ -27,7 +27,6 @@ function newVueI18n() {
  * I18n 实例对象
  */
 let vueI18n: VueI18n = newVueI18n();
-// let vueI18n: VueI18n | null = null
 /**
  * 初始化 VueI18n
  */

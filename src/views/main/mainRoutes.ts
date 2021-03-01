@@ -14,6 +14,12 @@ const routes: RouteConfig = {
             component: () => import(/* webpackChunkName: "main" */ '@/views/main/example'),
             meta: { title: 'example' },
         },
+        {
+            path: 'page1',
+            name: 'page1',
+            component: () => import(/* webpackChunkName: "main" */ '@/views/main/page1'),
+            meta: { title: 'page1' },
+        },
         /* automatically added, please do not modify manually */
     ],
 };

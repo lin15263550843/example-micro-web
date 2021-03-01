@@ -1,3 +1,5 @@
+import page2 from '@/views/demo/page2/languages/zh-CN';
+import page1 from '@/views/main/page1/languages/zh-CN';
 import example from '@/views/main/example/languages/zh-CN';
 /**
  * 简体中文
@@ -5,10 +7,12 @@ import example from '@/views/main/example/languages/zh-CN';
 export default {
     commons: {
         popconfirm: {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+            yes: '确定',
+            no: '取消',
         },
     },
     example,
+    page1,
+    page2,
     /* automatically added, please do not modify manually */
 };
