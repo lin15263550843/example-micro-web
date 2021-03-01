@@ -1,10 +1,7 @@
-<!-- 404 page -->
 <template>
     <div class="page-404">
-        <h1>
-            <span>页面不存在</span>
-            <br />
-        </h1>
+        <h1>404</h1>
+        <h3>o(╥﹏╥)o</h3>
     </div>
 </template>
 
@@ -18,5 +15,6 @@ export default class Page404 extends Vue {}
 <style lang="scss">
 .page-404 {
     padding: 16px;
+    text-align: center;
 }
 </style>

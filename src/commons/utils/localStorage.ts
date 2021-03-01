@@ -1,4 +1,5 @@
-import { AnyType } from './../dto/common.dto';
+import { AnyType } from '../dto/index.dto';
+
 /**
  * 封装 LocalStorage
  */

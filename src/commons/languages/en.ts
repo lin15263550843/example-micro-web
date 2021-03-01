@@ -1,4 +1,5 @@
-import example from '@/views/main/example/languages/en';
+import mainHome from '@/views/main/home/languages/en';
+import login from '@/views/user/login/languages/en';
 /**
  * 英语
  */
@@ -9,6 +10,7 @@ export default {
             cancelButtonText: 'No',
         },
     },
-    example,
+    mainHome,
+    login,
     /* automatically added, please do not modify manually */
 };

@@ -1,0 +1,9 @@
+.header-operating {
+    cursor: pointer;
+    color: white;
+    padding-right: 18px;
+
+    & > * {
+        margin-left: 10px;
+    }
+}

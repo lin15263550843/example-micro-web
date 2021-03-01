@@ -1,0 +1,87 @@
+.sidebar {
+    .logo {
+        cursor: pointer;
+        padding: 19px 12px;
+
+        img {
+            height: 30px;
+            margin-right: 8px;
+        }
+    }
+
+    .user {
+        padding: 0 12px;
+        margin-top: 16px;
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            margin-right: 8px;
+            border-radius: 100%;
+            border: white solid 2px;
+            overflow: hidden;
+
+            img {
+                width: 48px;
+                height: 48px;
+                position: relative;
+                top: -2px;
+                left: -2px;
+            }
+        }
+
+        .user-info {
+            font-size: 14px;
+            font-family: MicrosoftYaHei;
+            color: $menu-light-color;
+            line-height: 19px;
+
+            .status {
+                margin-top: 6px;
+                font-size: 14px;
+                font-family: MicrosoftYaHei;
+                color: $menu-color;
+                line-height: 19px;
+
+                .dots {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 100%;
+                    margin-right: 6px;
+                    background: #00dd88;
+                }
+            }
+        }
+    }
+
+    .search {
+        padding: 24px 12px;
+
+        ::v-deep .ant-input {
+            height: 36px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .suffix {
+            height: 16px;
+        }
+    }
+
+    .menu {
+        .ant-menu-item-active {
+            font-weight: bold;
+        }
+
+        .ant-menu-item-selected {
+            background-color: $primary-color;
+            color: $menu-light-color;
+            font-weight: bold;
+        }
+    }
+
+    .ant-menu-dark {
+        background: $menu-bg-color;
+    }
+}

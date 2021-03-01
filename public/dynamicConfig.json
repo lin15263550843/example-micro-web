@@ -1,0 +1,11 @@
+{
+    "apiBaseUrl": "http://localhost:8080",
+    "apiPrefix": "",
+    "language": "zhCN",
+    "theme": "theme-primary",
+    "env": "local",
+    "logger": {
+        "loggerEnable": false,
+        "isUploadLog": false
+    }
+}

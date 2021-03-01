@@ -2564,11 +2564,6 @@ commander@^2.12.1, commander@^2.18.0, commander@^2.20.0:
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
 
-commander@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/commander/-/commander-7.0.0.tgz#3e2bbfd8bb6724760980988fb5b22b7ee6b71ab2"
-  integrity sha512-ovx/7NkTrnPuIV8sqk/GjUIIM1+iUQeqA3ye2VNpq9sVoiZsooObWlQy+OPWGI17GDaEoybuAGJm6U8yC077BA==
-
 commander@~2.19.0:
   version "2.19.0"
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
@@ -5255,7 +5250,7 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lhd-ant-design-vue@1.0.3:
+lhd-ant-design-vue@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/lhd-ant-design-vue/-/lhd-ant-design-vue-1.0.3.tgz#84a09efae231465a81e305b42ee449635ea59118"
   integrity sha512-cBzHqAhOcRPgp0as5/pehetEo7nIF4aPgy/oTM2KHO3tvXRw6WwjnAi5HnC4J/kpLaaxSXrVd3tVuFCF+Q2Z6w==
@@ -5522,15 +5517,6 @@ methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/methods/download/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
-
-micro-frontends-scripts@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/micro-frontends-scripts/-/micro-frontends-scripts-1.0.8.tgz#a40d55198e1956218fd5dbe6650fa6109765ae4e"
-  integrity sha512-VJAOdg8MjdbWOK2MQIP3DEH73D595/f9IT+R3bdRX2QTOpBAPZvh9uQQPvwAZQ7SFTosDjGHveM0ga5OGEBx6g==
-  dependencies:
-    chalk "^4.1.0"
-    commander "^7.0.0"
-    silly-datetime "^0.1.2"
 
 microevent.ts@~0.1.1:
   version "0.1.1"
@@ -7532,7 +7518,7 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.npm.taobao.org/signal-exit/download/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha1-oUEMLt2PB3sItOJTyOrPyvBXRhw=
 
-silly-datetime@0.1.2, silly-datetime@^0.1.2:
+silly-datetime@0.1.2:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/silly-datetime/download/silly-datetime-0.1.2.tgz#21978e8e8d8481616063ac112ff14693f06eb85b"
   integrity sha1-IZeOjo2EgWFgY6wRL/FGk/BuuFs=

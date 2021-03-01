@@ -1,14 +1,16 @@
 <template>
     <div class="main-container" :class="$store.state.mainContainer && $store.state.mainContainer.currentTheme">
         <router-view />
+        <GlobalLoading />
     </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import MainContainerStore from './mainContainer.store';
 import Config from '@/config';
+import GlobalLoading from '@/components/globalLoading';
 
-@Component({})
+@Component({ components: { GlobalLoading } })
 export default class MainContainer extends Vue {
     private created() {
         // 设置主题

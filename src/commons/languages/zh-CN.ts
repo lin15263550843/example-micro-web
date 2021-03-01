@@ -1,4 +1,5 @@
-import example from '@/views/main/example/languages/zh-CN';
+import mainHome from '@/views/main/home/languages/zh-CN';
+import login from '@/views/user/login/languages/zh-CN';
 /**
  * 简体中文
  */
@@ -9,6 +10,7 @@ export default {
             cancelButtonText: '取消',
         },
     },
-    example,
+    mainHome,
+    login,
     /* automatically added, please do not modify manually */
 };

@@ -1,10 +1,23 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const webpack = require('webpack');
-const { name } = require('./package.json');
+// const { name } = require('./package.json')
 const resolve = dir => {
     return path.join(__dirname, dir);
 };
+
+// const port = process.env.port || process.env.npm_config_port || 9530 // dev port
+
+// 项目部署基础
+// 默认情况下，我们假设你的应用将被部署在域的根目录下,
+// 例如：https://www.my-app.com/
+// 默认：'/'
+// 如果您的应用程序部署在子路径中，则需要在这指定子路径
+// 例如：https://www.foobar.com/my-app/
+// 需要将它改为'/my-app/'
+// iview-admin线上演示打包路径： https://file.iviewui.com/admin-dist/
+// const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
+
+const webpack = require('webpack');
 
 module.exports = {
     publicPath: '/',
@@ -13,32 +26,39 @@ module.exports = {
     indexPath: 'index.html',
     // lintOnSave: 'development' === process.env.NODE_ENV,
     lintOnSave: 'default', //  将 lint 错误输出为编译错误
-    // productionSourceMap: false, // 设为 false 打包时不生成.map文件
-    devServer: {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-        },
-    },
+    // productionSourceMap: false, // 设为false打包时不生成.map文件
+    // devServer: { // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
+    //   proxy: 'localhost:3000'
+    // }
+    // devServer: {
+    //     // port: 2222,
+    //     headers: {
+    //         'Access-Control-Allow-Origin': '*'
+    //     }
+    // },
     configureWebpack: {
         // provide the app's title in webpack's name field, so that
         // it can be accessed in index.html to inject the correct title.
+        // name: '应急物资',
         resolve: {
             alias: {
                 '@ant-design/icons/lib/dist$': resolve('src/assets/icons/index.ts'),
-                '@': resolve('src'),
-                '@assets': resolve('src/assets'),
-                '@comm': resolve('src/commons'),
-                '@utils': resolve('src/commons/utils'),
-                '@comp': resolve('src/components'),
-                '@store': resolve('src/store'),
-                '@views': resolve('src/views'),
+                // '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.js')
+                // '@': resolve('src')
+                // '@assets': resolve('src/assets'),
+                // '@comm': resolve('src/commons'),
+                // '@utils': resolve('src/commons/utils'),
+                // '@comp': resolve('src/components'),
+                // '@store': resolve('src/store'),
+                // '@views': resolve('src/views')
             },
         },
-        output: {
-            library: name,
-            libraryTarget: 'umd',
-            jsonpFunction: `webpackJsonp_${name}`,
-        },
+        // output: {
+        //     library: name,
+        //     // library: `${packageName}-[name]`,
+        //     libraryTarget: 'umd',
+        //     jsonpFunction: `webpackJsonp_${name}`
+        // }
     },
     chainWebpack: config => {
         // Ignore all locale files of moment.js
@@ -107,7 +127,7 @@ module.exports = {
                 antdv: {
                     name: 'chunk-antdv',
                     priority: 20,
-                    test: /[\\/]node_modules[\\/]_?lhd-ant-design-vue(.*)/,
+                    test: /[\\/]node_modules[\\/]_?ant-design-vue(.*)/,
                 },
                 // commons: {
                 //     name: 'chunk-commons',
@@ -142,6 +162,7 @@ module.exports = {
             // }
             scss: {
                 prependData: `@import '@/styles/variables.scss';`,
+                // additionalData: `@import 'styles/themes/yjwzPrimary.scss';`
             },
             // less: {
             //     lessOptions: {

@@ -21,6 +21,7 @@ module.exports = {
     //     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // },
     rules: {
+        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'vue/max-attributes-per-line': [
             2,
             {
@@ -222,7 +223,15 @@ module.exports = {
             },
         ],
         'space-before-blocks': [2, 'always'],
-        'space-before-function-paren': [2, 'never'],
+        // 'space-before-function-paren': [2, 'never'],
+        'space-before-function-paren': [
+            'error',
+            {
+                anonymous: 'never',
+                named: 'never',
+                asyncArrow: 'always',
+            },
+        ],
         'space-in-parens': [2, 'never'],
         'space-infix-ops': 2,
         'space-unary-ops': [

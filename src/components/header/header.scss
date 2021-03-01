@@ -1,0 +1,28 @@
+.header {
+    position: relative;
+    padding: 0;
+    background: $primary-color;
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.06);
+
+    .header-left {
+        .menu {
+            line-height: 60px;
+            background: transparent;
+
+            .ant-menu-item {
+                color: $menu-color;
+            }
+
+            .ant-menu-item-active {
+                color: $menu-light-color;
+                font-weight: bold;
+                border-bottom: 4px solid transparent;
+            }
+
+            .ant-menu-item-selected {
+                @extend .ant-menu-item-active;
+                border-bottom: 4px solid #00dd88;
+            }
+        }
+    }
+}

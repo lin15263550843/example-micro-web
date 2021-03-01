@@ -1,0 +1,147 @@
+{
+    "code": 200,
+    "message": null,
+    "data": {
+        "loginId": 88888888,
+        "loginName": "lhd",
+        "loginPwd": "lhd",
+        "loginTime": "2021-02-28 01:02:19",
+        "loginType": "1",
+        "loginIp": "0.0.0.0",
+        "sessionId": "126A46D51942FEED00993DDC9932C26B",
+        "description1": "子应用列表",
+        "defaultMicroApps": [
+            { "name": "micro-app-demo1", "entry": "//localhost:8081", "activeRule": "/m/example" },
+            { "name": "micro-app-demo2", "entry": "//localhost:8082", "activeRule": "/m/example2" }
+        ],
+        "description2": "子应用菜单列表",
+        "sideBarMenusData": {
+            "micro-app-demo1": [
+                {
+                    "code": "1-1",
+                    "name": "菜单1-1",
+                    "icon": "smile",
+                    "path": "",
+                    "appName": "micro-app-demo1",
+                    "childen": [
+                        {
+                            "code": "1-1-1",
+                            "name": "菜单1-1-1",
+                            "icon": "smile",
+                            "path": "/m/example/main/example",
+                            "appName": "micro-app-demo1"
+                        },
+                        {
+                            "code": "1-1-2",
+                            "name": "菜单1-1-2",
+                            "icon": "smile",
+                            "path": "/m/example/main/page1",
+                            "appName": "micro-app-demo1"
+                        },
+                        {
+                            "code": "1-1-3",
+                            "name": "菜单1-1-3",
+                            "icon": "smile",
+                            "path": "/m/example/main/page2",
+                            "appName": "micro-app-demo1"
+                        },
+                        {
+                            "code": "1-1-4",
+                            "name": "菜单1-1-4",
+                            "icon": "smile",
+                            "path": "",
+                            "appName": "micro-app-demo1"
+                        }
+                    ]
+                },
+                {
+                    "code": "1-2",
+                    "name": "菜单1-2",
+                    "icon": "smile",
+                    "path": "/main/example",
+                    "appName": "micro-app-demo1",
+                    "childen": [
+                        {
+                            "code": "1-2-1",
+                            "name": "菜单1-2-1",
+                            "icon": "smile",
+                            "path": "/m/example",
+                            "appName": "micro-app-demo1"
+                        },
+                        {
+                            "code": "1-2-2",
+                            "name": "菜单1-2-2",
+                            "icon": "smile",
+                            "path": "/m/example",
+                            "appName": "micro-app-demo1"
+                        }
+                    ]
+                },
+                {
+                    "code": "1-3",
+                    "name": "菜单1-3",
+                    "icon": "smile",
+                    "path": "/main/example",
+                    "appName": "micro-app-demo1",
+                    "childen": [
+                        {
+                            "code": "1-3-1",
+                            "name": "菜单1-3-1",
+                            "icon": "smile",
+                            "path": "/m/example",
+                            "appName": "micro-app-demo1"
+                        }
+                    ]
+                }
+            ],
+            "micro-app-demo2": [
+                {
+                    "code": "2-1",
+                    "name": "菜单2-1",
+                    "icon": "smile",
+                    "path": "",
+                    "appName": "micro-app-demo2",
+                    "childen": [
+                        {
+                            "code": "2-1-1",
+                            "name": "菜单2-1-1",
+                            "icon": "smile",
+                            "path": "/m/example2/main/example",
+                            "appName": "micro-app-demo2"
+                        },
+                        {
+                            "code": "2-1-2",
+                            "name": "菜单2-1-2",
+                            "icon": "smile",
+                            "path": "/m/example2/main/page1",
+                            "appName": "micro-app-demo2"
+                        }
+                    ]
+                },
+                {
+                    "code": "2-2",
+                    "name": "菜单2-2",
+                    "icon": "smile",
+                    "path": "",
+                    "appName": "micro-app-demo2",
+                    "childen": [
+                        {
+                            "code": "2-2-1",
+                            "name": "菜单2-2-1",
+                            "icon": "smile",
+                            "path": "/m/example2",
+                            "appName": "micro-app-demo2"
+                        },
+                        {
+                            "code": "2-2-2",
+                            "name": "菜单2-2-2",
+                            "icon": "smile",
+                            "path": "/m/example2",
+                            "appName": "micro-app-demo2"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

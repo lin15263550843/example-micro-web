@@ -1,5 +1,5 @@
 {
-    "name": "micro-web",
+    "name": "manage-system-web",
     "version": "1.0.0",
     "private": true,
     "scripts": {
@@ -15,7 +15,7 @@
     "dependencies": {
         "axios": "0.20.0",
         "core-js": "3.6.5",
-        "lhd-ant-design-vue": "1.0.3",
+        "lhd-ant-design-vue": "^1.0.3",
         "qiankun": "2.4.0",
         "vue": "2.6.11",
         "vue-class-component": "7.2.3",

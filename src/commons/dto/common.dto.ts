@@ -1,10 +1,11 @@
-import VueRouter from 'vue-router';
 import Config from '@/config';
+import VueRouter from 'vue-router';
+import { GlobalStateActionTypes } from '../constants/globalStateActionTypes';
 /**
  * 公共类型存放
  */
 export interface CommonTest {
-    [index: number]: string;
+    // [index: number]: string
     [key: string]: any;
 }
 /**
@@ -28,15 +29,53 @@ export type DeepReadonly<T> = { readonly [P in keyof T]: DeepReadonly<T[P]> };
 // type Partial<T> = {
 //     [P in keyof T]?: T[P]
 // }
-/**
- *
- */
-export interface MountProps {
-    name: string;
-    onGlobalStateChange: Function;
-    setGlobalState: Function;
-    rootConfig: typeof Config;
-    rootRouter: VueRouter;
-}
 
+/**
+ * any 类型，慎用！！！
+ */
 export type AnyType = any;
+/**
+ * 应用间通信数据类型
+ */
+interface RootData {
+    params: any;
+}
+/**
+ * 注册微应用的 props 类型
+ */
+export interface RegisterMicroAppsProps {
+    rootRouter: VueRouter;
+    rootConfig: typeof Config;
+    routerBase: string;
+    rootData: RootData;
+}
+/**
+ * 微应用列表
+ */
+export interface RegistrableApp {
+    name: string;
+    entry: string;
+    activeRule: string;
+    props?: any;
+    loader?: (loading: boolean) => void;
+}
+/**
+ * 应用切换传递信息规范
+ */
+export interface QiankunGlobalStateRoute {
+    sender: string; // 发送者
+    recipient: string; // 接收着
+    type: string; // 类型标识
+    appName: string; // 要跳转的应用名称
+    menuCode: string; // 要跳转的应用对应菜单名称
+    path: string; // 要跳转的应用页面路径
+    params: any; // 传递的数据
+}
+/**
+ * qiankun 应用通信全局状态
+ */
+export interface QiankunGlobalState {
+    actionType: GlobalStateActionTypes; //  传递信息的类型
+    config: typeof Config; // 配置文件
+    route: QiankunGlobalStateRoute; // 应用间跳转
+}

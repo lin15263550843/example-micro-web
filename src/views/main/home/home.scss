@@ -1,0 +1,31 @@
+.manage-system-home {
+    .ant-layout {
+        background: #f5f7fa;
+
+        .ant-layout-sider {
+            background: $menu-bg-color;
+        }
+    }
+
+    .layout-content {
+        padding: 16px;
+
+        .tabs {
+            background: #f5f7fa;
+
+            ::v-deep .ant-tabs-bar {
+                margin: 0;
+            }
+
+            ::v-deep .ant-tabs-tab-active {
+                color: $primary-color;
+                font-weight: bold;
+            }
+
+            // .home-content {
+            // padding: 30px 20px;
+            // background: white;
+            // }
+        }
+    }
+}

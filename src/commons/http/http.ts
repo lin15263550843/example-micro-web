@@ -1,6 +1,6 @@
 import service from './interceptors';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { ResOutDto } from '@/commons/dto/index.dto';
+import { AnyType, ResOutDto } from '@/commons/dto/index.dto';
 import Config from '@/config';
 /**
  * 封装 http 服务
@@ -23,7 +23,7 @@ export class Http {
      * @param params 请求拼接的参数
      * @param config 配置
      */
-    public static get<T = any, R = ResOutDto<T>>(
+    public static get<T = AnyType, R = ResOutDto<T>>(
         url: string,
         params: object = {},
         config?: AxiosRequestConfig,
@@ -38,15 +38,22 @@ export class Http {
      * @param data 请求参数
      * @param config 配置
      */
-    public static post(url: string, data: any = {}, config?: AxiosRequestConfig): Promise<ResOutDto> {
+    public static post(url: string, data: AnyType = {}, config?: AxiosRequestConfig): Promise<ResOutDto> {
         // post<T = any, R = AxiosResponse<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>;
         return service.post(this.getUrl(url), data, config);
     }
+    // login(params: any) {
+    //     return service({
+    //         url: '/api/user/login.do', //请求的路由
+    //         method: 'post', //请求的方法，默认为get
+    //         data: params //发送请求所需的参数
+    //     })
+    // }
     /**
      * 自定义请求
      * @param config 配置
      */
-    public request<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    public static request<T = AnyType>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
         return service.request<T>(config);
     }
 }

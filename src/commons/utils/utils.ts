@@ -1,5 +1,6 @@
+import Vue from 'vue';
 import { AnyType } from '../dto/index.dto';
-
+import vm from '@/main';
 /**
  * 获取窗口可见区域大小信息
  */
@@ -80,3 +81,22 @@ export async function asyncSleep(duration: number) {
 export function getRandomNumber(min: number, max: number) {
     return Math.round(Math.random() * (max - min) + min);
 }
+/**
+ * 设置跟节点 fonst-size
+ */
+export const setRootHtmlFontSize = () => {
+    const rootHtmlDOM = document.getElementsByTagName('html')[0];
+    const w = rootHtmlDOM.offsetWidth;
+    const fs = Math.round((w / 1920) * 10 * 10) / 10;
+    rootHtmlDOM.style.fontSize = `${fs}px`;
+    Vue.prototype.$rootFontSize = fs;
+};
+
+/**
+ * 获取跟节点 fonst-size
+ */
+export const getRootHtmlFontSize = () => {
+    // const rootHtmlDOM = document.getElementsByTagName('html')[0]
+    // return parseInt(rootHtmlDOM.style.fontSize || '10')
+    return vm.vue ? vm.vue.$rootFontSize : 10;
+};

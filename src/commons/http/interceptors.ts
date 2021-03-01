@@ -1,9 +1,12 @@
+import { LocalStorage } from './../utils/localStorage';
 /**
  * 封装 axios 拦截
  */
-import Axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
-import router from '@/router';
-import Config from '@/config';
+import Axios from 'axios';
+import vm from '@/main';
+// import Config from '@/config';
+import { RouterPaths } from '../constants/routerPaths';
+import { GlobalLoadingModule } from '@/components/globalLoading';
 /**
  * 防止重复提交，利用axios的cancelToken
  */
@@ -32,14 +35,14 @@ import Config from '@/config';
  * 创建axios实例
  */
 const service = Axios.create({
-    baseURL: Config.apiBaseUrl, // 基础地址 要请求的url前缀
+    // baseURL: Config.apiBaseUrl, // 基础地址 要请求的url前缀
     timeout: 60000, // 请求超时时间
 });
 /**
  * 添加请求拦截器
  */
 service.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
+    config => {
         // neverCancel 配置项，允许多个请求
         // if (!config.neverCancel) {
         //     // 生成cancelToken
@@ -62,9 +65,9 @@ service.interceptors.request.use(
         //   }
         return config;
     },
-    (error: AxiosError) => {
+    error => {
         // 对请求错误做些什么
-        console.log('requestError------>>>', error);
+        // vm.vue?.$logger.log('requestError===>>>')(error);
         return Promise.reject(error);
     },
 );
@@ -72,7 +75,7 @@ service.interceptors.request.use(
  * 添加响应拦截器
  */
 service.interceptors.response.use(
-    (response: AxiosResponse) => {
+    response => {
         // 移除队列中的该请求，注意这时候没有传第二个参数f
         // removePending(response.config)
         // 获取返回数据，并处理。按自己业务需求修改。下面只是个demo
@@ -89,50 +92,57 @@ service.interceptors.response.use(
         // } else {
         //     return response
         // }
-        const resData = response.data;
+        const resData = response?.data;
+
         // 考虑到接口返回不应为空，所以全局处理，抛出未知错误
         if (!resData) {
             return { code: -200, data: null, message: '未知错误' };
         }
+        // 成功后自定义的状态拦截
         switch (resData?.code) {
             case 203:
-                // 用户身份失效，跳转OAUTH登录
-                localStorage.removeItem('token');
-                router && router.push({ path: '/login' });
                 break;
             case 500:
-                // 服务器错误
                 break;
             case 404:
-                // Router.push('/404')
                 break;
             default:
                 break;
         }
         return resData;
     },
-    (error: any) => {
+    error => {
+        const errRes = error?.response;
+        GlobalLoadingModule.updateLoading(false);
+        if (!errRes) {
+            vm.vue?.$message.error(error?.message);
+            // vm.vue?.$router.push(RouterPaths.login);
+            return Promise.reject(error);
+        }
         // 对响应错误做点什么
-        switch (error.response?.status) {
+        // Prompt.toast(error.message)
+        switch (errRes?.status) {
+            // 各种错误处理
             case 401:
-                // 用户身份失效，跳转OAUTH登录
-                localStorage.removeItem('token');
-                router && router.push({ path: '/login' });
-                break;
+                LocalStorage.clear();
+                vm.vue?.$router.push(RouterPaths.login);
+                return Promise.resolve(errRes?.data);
+            case 403:
+                // 用户身份失效，跳转登录
+                LocalStorage.clear();
+                vm.vue?.$message.error(errRes?.data?.message);
+                vm.vue?.$router.push(RouterPaths.login);
+                return Promise.resolve(errRes?.data);
+            case 404:
+                return Promise.resolve(errRes?.data);
             case 500:
                 // 服务器错误
                 break;
-            case 404:
-                // Router.push('/404')
+            case 502:
                 break;
-            case 502: {
-                // 各种错误处理
-                break;
-            }
-            case 503: {
+            case 503:
                 // 网络异常
                 break;
-            }
             default:
                 break;
         }
@@ -140,8 +150,8 @@ service.interceptors.response.use(
         // if (error.message === '取消重复请求') {
         //     return Promise.reject(error)
         // }
-        console.log('responseError------>>>', error);
-        return Promise.reject(error);
+
+        return Promise.reject(errRes);
     },
 );
 export default service;
