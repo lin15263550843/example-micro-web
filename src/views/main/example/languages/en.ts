@@ -1,3 +1,3 @@
 export default {
-    chinese: '我是中文',
+    chinese: 'my is english',
 };

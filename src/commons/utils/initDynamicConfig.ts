@@ -5,7 +5,7 @@ import Config from '@/config';
  */
 export function initDynamicConfig() {
     // fetch 的速度可能比 xhr 更快一丢丢，如果浏览器不支持 fetch 可以使用下面的 Http.request (xhr) 方法
-    return fetch(`${window.location.origin}/dynamicConfig.json`)
+    return fetch(`${window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__ || window.location.origin}/dynamicConfig.json`)
         .then(response => {
             return response.json();
         })

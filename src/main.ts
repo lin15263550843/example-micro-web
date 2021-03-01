@@ -11,17 +11,18 @@ import { initVueRouter, clearVueRouter } from './router';
 import { MainContainerStore } from '@/components/mainContainer';
 import { QiankunGlobalState, QiankunProps } from '@/commons/dto/common.dto';
 import { GlobalStateActionTypes } from '@/commons/constants/globalStateActionTypes';
-import { initAntDesignVue, initVueI18n, clearVueI18n, initDynamicConfig, Logger } from '@/commons/utils';
+import { initAntDesignVue, UseI18n, initDynamicConfig, Logger } from '@/commons/utils';
 
+const useI18n = new UseI18n();
 const instance: { vue: Vue | null } = { vue: null };
 
 function render(props: QiankunProps | null) {
     const { container, rootRouter, rootData, routerBase } = props || {};
-    const router = initVueRouter(routerBase || '/');
-    const i18n = initVueI18n();
     const dom = container && container.querySelector('#micro-app');
 
     initDynamicConfig().then(() => {
+        const router = initVueRouter(routerBase || '/');
+        const i18n = useI18n.initVueI18n();
         instance.vue = new Vue({
             router,
             i18n,
@@ -29,11 +30,11 @@ function render(props: QiankunProps | null) {
             render: h => h(App),
             // render: h => h(props ? App : Page403), // 不支持子应用独立运行时会直接拦截 403
         }).$mount(container && dom ? dom : '#micro-app');
+        // 没有 rootRouter 的情况会使用 router
+        Vue.prototype.$rootRouter = rootRouter || router;
+        // 把应用传递过来的数据挂载到 $rootData
+        Vue.prototype.$rootData = rootData;
     });
-    // 没有 rootRouter 的情况会使用 router
-    Vue.prototype.$rootRouter = rootRouter || router;
-    // 把应用传递过来的数据挂载到 $rootData
-    Vue.prototype.$rootData = rootData;
 }
 
 Vue.config.productionTip = false;
@@ -99,7 +100,7 @@ export async function unmount() {
     }
     instance.vue = null;
     clearVueRouter();
-    clearVueI18n();
+    useI18n.clearVueI18n();
 }
 /**
  * 可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效

@@ -8,7 +8,7 @@ import { RouteConfig } from 'vue-router';
 const routes: Array<RouteConfig> = [
     {
         path: '/',
-        name: 'main',
+        name: 'mainContainer',
         redirect: '/main',
         component: MainContainer,
         meta: { title: '', icon: '' },
